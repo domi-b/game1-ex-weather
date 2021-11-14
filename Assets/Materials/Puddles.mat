@@ -25,6 +25,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - BaseTexture:
+        m_Texture: {fileID: 2800000, guid: 84cfc27856bde4b4fadd4bdaf44b738f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - NormalMap:
+        m_Texture: {fileID: 2800000, guid: 548d4c89dbb7fb74cb430e4c839e08a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9f98d2bb43824177a46568639ed22fdb:
+        m_Texture: {fileID: 2800000, guid: 548d4c89dbb7fb74cb430e4c839e08a9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_f833abb037574319afb66c1536dd317f:
+        m_Texture: {fileID: 2800000, guid: 84cfc27856bde4b4fadd4bdaf44b738f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -118,7 +134,24 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_5bf44406b081423aba90fec7197badd1: 1
+    - Noise2Strength: 0.05
+    - NoiseMaxClamp: 1
+    - NoiseMinClamp: 0.5
+    - NoisePositionClamp: 1
+    - NoisePositionMaxClamp: 1
+    - NoisePositionMinClamp: 0.5
+    - NoisePositionScale: 10
+    - NoisePositionStrength: 0.02
+    - NoiseScale: 5
+    - TextureTiling: 10
+    - Vector1_05759c71887e49c884c02114a67190e8: 0.6
     - Vector1_0e8961b9676246daa47e2ae14d2bfccf: 0.05
+    - Vector1_2a2330434e06441299771eba21849188: 8
+    - Vector1_695c608b7f6c4a209631b8c5c32c3306: 10
+    - Vector1_7e1b58c77fd24e5c84adb85b1fb0dd55: 0.8
+    - Vector1_9cd351191e63459cbbcb1c1d17cbb7fb: 10
+    - Vector1_a9c27730e6c14170b2640a06bdde5764: 0.01
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -232,6 +265,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - Noise2Scroll: {r: 0.0000001, g: 0.00001, b: 0, a: 0}
     - Vector2_92fd305a65314821b11a8652391317be: {r: 0, g: 0.1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
