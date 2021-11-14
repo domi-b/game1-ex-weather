@@ -30,7 +30,10 @@ public class RainController : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
         windZone = GetComponentInChildren<WindZone>();
 
-        StartCoroutine(AnimateWeather());
+        if (waterLevel != null)
+        {
+            StartCoroutine(AnimateWeather());
+        }
     }
 
     // Update is called once per frame
