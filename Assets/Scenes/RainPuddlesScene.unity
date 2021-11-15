@@ -244,6 +244,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &429892120 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7f244929068f8454bb1c31b5d7e5396c, type: 3}
+  m_PrefabInstance: {fileID: 60139412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &695288692
 GameObject:
   m_ObjectHideFlags: 0
@@ -5507,7 +5512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6e4df8b542fd8449381edbac4ba246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: {fileID: 0}
+  renderer: {fileID: 429892120}
+  lerpDuration: 2
 --- !u!1 &1879231263
 GameObject:
   m_ObjectHideFlags: 0

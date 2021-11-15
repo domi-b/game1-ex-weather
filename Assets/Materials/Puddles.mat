@@ -144,6 +144,7 @@ Material:
     - NoisePositionScale: 10
     - NoisePositionStrength: 0.02
     - NoiseScale: 5
+    - SmoothnessMinClamp: 0.4
     - TextureTiling: 10
     - Vector1_05759c71887e49c884c02114a67190e8: 0.6
     - Vector1_0e8961b9676246daa47e2ae14d2bfccf: 0.05
