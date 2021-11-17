@@ -4,46 +4,24 @@ using UnityEngine;
 
 public class RainController : MonoBehaviour
 {
-    public float windStrength
-    {
-        get => windZone.windMain;
-        set => windZone.windMain = value;
-    }
-    public float rainStrength
-    {
-        get => particleSystem.emission.rateOverTimeMultiplier;
-        set {
-            var emission = particleSystem.emission;
-            emission.rateOverTimeMultiplier = value;
-        }
-    }
-    private float _waterLevel;
-    public float waterLevel
-    {
-        get => _waterLevel;
-        set
-        {
-            renderer.material.SetFloat(smoothnessMinClampParam, value);
-            _waterLevel = value;
-        }
-    }
+    private LerpParam windStrength;
+    private LerpParam rainStrength;
+    private LerpParam waterLevel;
 
     [SerializeField]
     private new Renderer renderer;
     [SerializeField]
     private float lerpDuration = 2;
+    [SerializeField]
+    private float startRainStrength = 100;
+    [SerializeField]
+    private float startWindStrength = 1;
+    [SerializeField]
+    private float startWaterLevel = 0.4f;
 
     private new ParticleSystem particleSystem;
     private WindZone windZone;
     private int smoothnessMinClampParam;
-
-    private float lerpStart;
-    private float startRainStrength = 500;
-    private float startWindStrength = 5;
-    private float startWaterLevel = 0.6f;
-    private float targetRainStrength = 500;
-    private float targetWindStrength = 5;
-    private float targetWaterLevel = 0.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,35 +30,49 @@ public class RainController : MonoBehaviour
         windZone = GetComponentInChildren<WindZone>();
 
         smoothnessMinClampParam = Shader.PropertyToID("SmoothnessMinClamp");
+
+        windStrength = new LerpParam(value => windZone.windMain = value, lerpDuration, startWindStrength);
+        rainStrength = new LerpParam(value => {
+            var emission = particleSystem.emission;
+            emission.rateOverTimeMultiplier = value;
+        }, lerpDuration, startRainStrength);
+        waterLevel = new LerpParam(value => renderer.material.SetFloat(smoothnessMinClampParam, value), lerpDuration, startWaterLevel);
+
+        StartCoroutine(WeatherCycle());
     }
 
     // Update is called once per frame
     void Update()
     {
+        windStrength.Update();
+        rainStrength.Update();
+        waterLevel.Update();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            targetRainStrength = 500;
-            targetWindStrength = 5;
-            targetWaterLevel = 0.6f;
+            Time.timeScale = 5;
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            targetRainStrength = 100;
-            targetWindStrength = 1;
-            targetWaterLevel = 0.4f;
+            Time.timeScale = 1;
         }
-        else
-        {
-            var t = (Time.time - lerpStart) / lerpDuration;
-            rainStrength = Mathf.Lerp(startRainStrength, targetRainStrength, t);
-            windStrength = Mathf.Lerp(startWindStrength, targetWindStrength, t);
-            waterLevel = Mathf.Lerp(startWaterLevel, targetWaterLevel, t);
-            return;
-        }
+    }
 
-        lerpStart = Time.time;
-        startRainStrength = rainStrength;
-        startWindStrength = windStrength;
-        startWaterLevel = waterLevel;
+    private IEnumerator WeatherCycle()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(10);
+            windStrength.SetTarget(5 * startWindStrength);
+            yield return new WaitForSeconds(5);
+            rainStrength.SetTarget(5 * startRainStrength);
+            waterLevel.SetTarget(0.2f + startWaterLevel);
+
+            yield return new WaitForSeconds(10);
+            windStrength.SetTarget(startWindStrength);
+            yield return new WaitForSeconds(5);
+            rainStrength.SetTarget(startRainStrength);
+            waterLevel.SetTarget(startWaterLevel);
+        }
     }
 }
