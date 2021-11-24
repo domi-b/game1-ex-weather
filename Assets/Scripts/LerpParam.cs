@@ -1,42 +1,56 @@
 ﻿using System;
 using UnityEngine;
 
+[Serializable]
 public sealed class LerpParam
 {
-    private float _current;
-    public float Current
+    public enum TargetMode
     {
-        get => _current;
-        set
-        {
-            _current = value;
-            onUpdate(value);
-        }
+        Start,
+        End
     }
 
-    private float start;
-    private float target;
-    private float lerpStart;
-    private readonly float lerpDuration;
-    private readonly Action<float> onUpdate;
+    public float start;
+    public float end;
+    public float lerpDuration;
 
-    public LerpParam(Action<float> onUpdate, float lerpDuration, float current)
+    private float value;
+    private float lerpStart;
+    private float lerpTarget;
+    private float lerpStartTime;
+
+    public LerpParam(float start, float end, float lerpDuration)
     {
-        this.onUpdate = onUpdate;
+        this.start = start;
+        this.end = end;
         this.lerpDuration = lerpDuration;
-        Current = current;
+        value = start;
+        lerpStart = start;
+        lerpTarget = start;
+    }
+
+    public void SetTarget(TargetMode targetMode)
+    {
+        var target = targetMode switch
+        {
+            TargetMode.Start => start,
+            TargetMode.End => end,
+            _ => throw new ArgumentException($"Target mode {targetMode} is invalid")
+        };
+        SetTarget(target);
     }
 
     public void SetTarget(float target)
     {
-        this.target = target;
-        start = Current;
-        lerpStart = Time.time;
+        lerpTarget = target;
+        lerpStart = value;
+        lerpStartTime = Time.time;
     }
 
-    public void Update()
+    public float GetValue()
     {
-        var t = (Time.time - lerpStart) / lerpDuration;
-        Current = Mathf.Lerp(start, target, t);
+        var t = (Time.time - lerpStartTime) / lerpDuration;
+        value = Mathf.Lerp(lerpStart, lerpTarget, t);
+        return value;
     }
 }
