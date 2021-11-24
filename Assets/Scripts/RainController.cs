@@ -53,15 +53,6 @@ public class RainController : MonoBehaviour
         floorMaterial.SetFloat(smoothnessMinClampParam, waterLevel.GetValue());
         colorAdjustments.saturation.value = saturation.GetValue();
         fog.meanFreePath.value = fogStrength.GetValue();
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Time.timeScale = 5;
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Time.timeScale = 1;
-        }
     }
 
     private IEnumerator WeatherCycle()
