@@ -26,11 +26,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 84cfc27856bde4b4fadd4bdaf44b738f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6a2f20f10ea9b2a4cbde7b432c4f276d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - NormalMap:
-        m_Texture: {fileID: 2800000, guid: 548d4c89dbb7fb74cb430e4c839e08a9, type: 3}
+        m_Texture: {fileID: 2800000, guid: ea61895d648afc24b806de4ab8e215a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_9f98d2bb43824177a46568639ed22fdb:
@@ -266,6 +266,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - BaseColor: {r: 0.5566038, g: 0.5287718, b: 0.46996263, a: 1}
     - Noise2Scroll: {r: 0.0000001, g: 0.00001, b: 0, a: 0}
     - Vector2_92fd305a65314821b11a8652391317be: {r: 0, g: 0.1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
