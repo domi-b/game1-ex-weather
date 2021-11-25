@@ -135,7 +135,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_5bf44406b081423aba90fec7197badd1: 1
-    - Noise2Strength: 0.05
+    - DefaultSmoothness: 0.75
+    - Noise2Strength: 0.1
     - NoiseMaxClamp: 1
     - NoiseMinClamp: 0.5
     - NoisePositionClamp: 1
