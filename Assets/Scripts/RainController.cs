@@ -1,3 +1,5 @@
+//#define STOP_FOR_SCREENSHOT
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -27,6 +29,10 @@ public class RainController : MonoBehaviour
     private Fog fog;
     private int smoothnessMinClampParam;
 
+#if STOP_FOR_SCREENSHOT
+    private bool stopTime;
+#endif
+
     private void Start()
     {
         particleSystem = GetComponentInChildren<ParticleSystem>();
@@ -53,6 +59,13 @@ public class RainController : MonoBehaviour
         floorMaterial.SetFloat(smoothnessMinClampParam, waterLevel.GetValue());
         colorAdjustments.saturation.value = saturation.GetValue();
         fog.meanFreePath.value = fogStrength.GetValue();
+
+#if STOP_FOR_SCREENSHOT
+        if (stopTime)
+        {
+            Time.timeScale = 0;
+        }
+#endif
     }
 
     private IEnumerator WeatherCycle()
@@ -101,6 +114,11 @@ public class RainController : MonoBehaviour
         Debug.Log("Waterlevel + strong rain");
         rainStrength.SetTarget(TargetMode.End);
         waterLevel.SetTarget(TargetMode.End);
+
+#if STOP_FOR_SCREENSHOT
+        yield return new WaitForSeconds(2);
+        stopTime = true;
+#endif
     }
 
     private void SetWeakerRain()
