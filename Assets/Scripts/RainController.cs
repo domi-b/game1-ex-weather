@@ -11,7 +11,7 @@ public class RainController : MonoBehaviour
     public float weakerRain = 0.33f;
 
     public LerpParam windStrength = new LerpParam(0.25f, 5, lerpDuration / 2);
-    public LerpParam rainStrength = new LerpParam(0, 2000, lerpDuration);
+    public LerpParam rainStrength = new LerpParam(0, 4000, lerpDuration);
     public LerpParam waterLevel = new LerpParam(0.4f, 0.6f, lerpDuration * 4);
     public LerpParam saturation = new LerpParam(0, -25, lerpDuration * 2);
     public LerpParam fogStrength = new LerpParam(500, 50, lerpDuration * 2);
